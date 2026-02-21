@@ -1,1 +1,6 @@
 # marketmind-backend
+fastapi
+uvicorn[standard]
+google-generativeai
+pydantic
+python-multipart  
