@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MarketMind — AI Sales & Marketing Intelligence</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <span class="logo-mark">M</span>
+    <span class="logo-text">MarketMind</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+    <li><a href="#dashboard" class="nav-link" data-section="dashboard">Dashboard</a></li>
+    <li><a href="#campaign" class="nav-link" data-section="campaign">Campaigns</a></li>
+    <li><a href="#pitch" class="nav-link" data-section="pitch">Pitches</a></li>
+    <li><a href="#leads" class="nav-link" data-section="leads">Lead Intel</a></li>
+    <li><a href="#analytics" class="nav-link" data-section="analytics">Analytics</a></li>
+  </ul>
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    <span class="status-text">AI Ready</span>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="section hero-section active" id="home">
+  <div class="hero-bg">
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Powered by Google Gemini AI
+    </div>
+    <h1 class="hero-title">
+      Sales Intelligence<br/>
+      <span class="title-accent">Reimagined</span>
+    </h1>
+    <p class="hero-sub">Generate campaigns, craft pitches, and unlock lead insights with generative AI. Close more deals, faster.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="navigateTo('dashboard')">
+        <span>Open Dashboard</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <button class="btn btn-ghost" onclick="navigateTo('campaign')">Generate Campaign</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">10×</span>
+        <span class="stat-label">Faster Pitches</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">87%</span>
+        <span class="stat-label">Lead Accuracy</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">3×</span>
+        <span class="stat-label">Revenue Growth</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="floating-card card-campaign">
+      <div class="fc-icon">📣</div>
+      <div class="fc-info">
+        <span class="fc-title">Campaign Generated</span>
+        <span class="fc-sub">Q4 SaaS Launch — Email + LinkedIn</span>
+      </div>
+    </div>
+    <div class="floating-card card-lead">
+      <div class="fc-icon">🎯</div>
+      <div class="fc-info">
+        <span class="fc-title">Lead Score: 94</span>
+        <span class="fc-sub">TechCorp Inc. — High Intent</span>
+      </div>
+    </div>
+    <div class="floating-card card-pitch">
+      <div class="fc-icon">⚡</div>
+      <div class="fc-info">
+        <span class="fc-title">Pitch Ready</span>
+        <span class="fc-sub">Consultative style — 3 min read</span>
+      </div>
+    </div>
+    <div class="terminal-mockup">
+      <div class="terminal-header">
+        <span class="t-dot red"></span>
+        <span class="t-dot yellow"></span>
+        <span class="t-dot green"></span>
+        <span class="t-title">marketmind.ai</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">›</span> Analyzing lead signals...</div>
+        <div class="t-line delay-1"><span class="t-prompt">›</span> Intent score: <span class="t-accent">94/100</span></div>
+        <div class="t-line delay-2"><span class="t-prompt">›</span> Generating pitch...</div>
+        <div class="t-line delay-3"><span class="t-prompt">›</span> Campaign deployed <span class="t-success">✓</span></div>
+        <div class="t-cursor">_</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD SECTION -->
+<section class="section dashboard-section" id="dashboard">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Dashboard</h2>
+      <p class="section-sub">Your AI-powered sales intelligence overview</p>
+    </div>
+    <button class="btn btn-sm btn-primary" onclick="loadDashboard()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+      Refresh
+    </button>
+  </div>
+
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card" data-key="total_campaigns">
+      <div class="sc-icon">📣</div>
+      <div class="sc-value">—</div>
+      <div class="sc-label">Campaigns</div>
+    </div>
+    <div class="stat-card" data-key="active_leads">
+      <div class="sc-icon">👥</div>
+      <div class="sc-value">—</div>
+      <div class="sc-label">Active Leads</div>
+    </div>
+    <div class="stat-card" data-key="pitches_generated">
+      <div class="sc-icon">⚡</div>
+      <div class="sc-value">—</div>
+      <div class="sc-label">Pitches Generated</div>
+    </div>
+    <div class="stat-card" data-key="avg_lead_score">
+      <div class="sc-icon">🎯</div>
+      <div class="sc-value">—</div>
+      <div class="sc-label">Avg Lead Score</div>
+    </div>
+    <div class="stat-card" data-key="conversion_rate">
+      <div class="sc-icon">📈</div>
+      <div class="sc-value">—</div>
+      <div class="sc-label">Conversion Rate %</div>
+    </div>
+    <div class="stat-card" data-key="revenue_pipeline">
+      <div class="sc-icon">💰</div>
+      <div class="sc-value">—</div>
+      <div class="sc-label">Revenue Pipeline</div>
+    </div>
+    <div class="stat-card" data-key="top_performing_channel">
+      <div class="sc-icon">🏆</div>
+      <div class="sc-value">—</div>
+      <div class="sc-label">Top Channel</div>
+    </div>
+    <div class="stat-card" data-key="monthly_growth">
+      <div class="sc-icon">🚀</div>
+      <div class="sc-value">—</div>
+      <div class="sc-label">Monthly Growth %</div>
+    </div>
+  </div>
+
+  <div class="dashboard-actions">
+    <h3 class="da-title">Quick Actions</h3>
+    <div class="da-grid">
+      <div class="da-card" onclick="navigateTo('campaign')">
+        <div class="da-icon">📣</div>
+        <span class="da-label">New Campaign</span>
+        <p class="da-desc">Generate AI-powered marketing campaigns for any channel</p>
+      </div>
+      <div class="da-card" onclick="navigateTo('pitch')">
+        <div class="da-icon">⚡</div>
+        <span class="da-label">Create Pitch</span>
+        <p class="da-desc">Personalized sales pitches tailored to your prospect</p>
+      </div>
+      <div class="da-card" onclick="navigateTo('leads')">
+        <div class="da-icon">🔍</div>
+        <span class="da-label">Analyze Lead</span>
+        <p class="da-desc">Deep lead intelligence with scoring and outreach strategy</p>
+      </div>
+      <div class="da-card" onclick="navigateTo('analytics')">
+        <div class="da-icon">📊</div>
+        <span class="da-label">Predict Analytics</span>
+        <p class="da-desc">Forecast campaign performance with AI-driven insights</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN SECTION -->
+<section class="section campaign-section" id="campaign">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Campaign Generator</h2>
+      <p class="section-sub">Create full-stack marketing campaigns powered by AI</p>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="form-panel">
+      <form id="campaignForm" onsubmit="generateCampaign(event)">
+        <div class="form-group">
+          <label>Product / Service Name</label>
+          <input type="text" id="c_product" placeholder="e.g. SalesBoost CRM" required />
+        </div>
+        <div class="form-group">
+          <label>Target Audience</label>
+          <input type="text" id="c_audience" placeholder="e.g. B2B SaaS companies with 50-200 employees" required />
+        </div>
+        <div class="form-group">
+          <label>Campaign Goal</label>
+          <select id="c_goal">
+            <option value="lead generation">Lead Generation</option>
+            <option value="brand awareness">Brand Awareness</option>
+            <option value="product launch">Product Launch</option>
+            <option value="customer retention">Customer Retention</option>
+            <option value="upsell/cross-sell">Upsell / Cross-sell</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tone</label>
+          <select id="c_tone">
+            <option value="professional">Professional</option>
+            <option value="friendly and conversational">Friendly & Conversational</option>
+            <option value="bold and assertive">Bold & Assertive</option>
+            <option value="empathetic">Empathetic</option>
+            <option value="witty and playful">Witty & Playful</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Channels</label>
+          <div class="checkbox-group">
+            <label class="cb-label"><input type="checkbox" value="email" checked /> Email</label>
+            <label class="cb-label"><input type="checkbox" value="LinkedIn" checked /> LinkedIn</label>
+            <label class="cb-label"><input type="checkbox" value="Twitter/X" /> Twitter/X</label>
+            <label class="cb-label"><input type="checkbox" value="Google Ads" /> Google Ads</label>
+            <label class="cb-label"><input type="checkbox" value="Instagram" /> Instagram</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="campaignBtn">
+          <span>Generate Campaign</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </button>
+      </form>
+    </div>
+    <div class="result-panel" id="campaignResult">
+      <div class="result-placeholder">
+        <div class="placeholder-icon">📣</div>
+        <p>Fill in the form and click Generate to create your AI-powered campaign</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PITCH SECTION -->
+<section class="section pitch-section" id="pitch">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Sales Pitch Generator</h2>
+      <p class="section-sub">Hyper-personalized pitches crafted for each prospect</p>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="form-panel">
+      <form id="pitchForm" onsubmit="generatePitch(event)">
+        <div class="form-group">
+          <label>Product / Service Name</label>
+          <input type="text" id="p_product" placeholder="e.g. DataSense Analytics" required />
+        </div>
+        <div class="form-group">
+          <label>Prospect / Company Name</label>
+          <input type="text" id="p_prospect" placeholder="e.g. Acme Corp" required />
+        </div>
+        <div class="form-group">
+          <label>Prospect's Industry</label>
+          <input type="text" id="p_industry" placeholder="e.g. FinTech, Healthcare, E-commerce" required />
+        </div>
+        <div class="form-group">
+          <label>Known Pain Points</label>
+          <textarea id="p_pain" rows="3" placeholder="e.g. Manual reporting is slow, losing deals to competitors, poor lead tracking..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Budget Range (optional)</label>
+          <input type="text" id="p_budget" placeholder="e.g. $5K-$20K/month" />
+        </div>
+        <div class="form-group">
+          <label>Pitch Style</label>
+          <select id="p_style">
+            <option value="consultative">Consultative</option>
+            <option value="challenger">Challenger Sale</option>
+            <option value="SPIN">SPIN Selling</option>
+            <option value="solution-based">Solution-Based</option>
+            <option value="storytelling">Storytelling</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="pitchBtn">
+          <span>Generate Pitch</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </button>
+      </form>
+    </div>
+    <div class="result-panel" id="pitchResult">
+      <div class="result-placeholder">
+        <div class="placeholder-icon">⚡</div>
+        <p>Fill in prospect details to generate a personalized sales pitch</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADS SECTION -->
+<section class="section leads-section" id="leads">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Lead Intelligence</h2>
+      <p class="section-sub">AI-powered lead scoring and actionable outreach intelligence</p>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="form-panel">
+      <form id="leadForm" onsubmit="analyzeLead(event)">
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" id="l_company" placeholder="e.g. NovaTech Solutions" required />
+        </div>
+        <div class="form-group">
+          <label>Industry</label>
+          <input type="text" id="l_industry" placeholder="e.g. SaaS, Manufacturing, Retail" required />
+        </div>
+        <div class="form-group">
+          <label>Company Size</label>
+          <select id="l_size">
+            <option value="1-10 employees (startup)">1–10 (Startup)</option>
+            <option value="11-50 employees (small business)">11–50 (Small Business)</option>
+            <option value="51-200 employees (mid-market)">51–200 (Mid-Market)</option>
+            <option value="201-1000 employees (enterprise)">201–1000 (Enterprise)</option>
+            <option value="1000+ employees (large enterprise)">1000+ (Large Enterprise)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Recent Activity / Signals</label>
+          <textarea id="l_activity" rows="3" placeholder="e.g. Visited pricing page 3x, downloaded whitepaper, attended webinar..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Company Website (optional)</label>
+          <input type="text" id="l_website" placeholder="e.g. https://novatech.com" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="leadBtn">
+          <span>Analyze Lead</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+      </form>
+    </div>
+    <div class="result-panel" id="leadResult">
+      <div class="result-placeholder">
+        <div class="placeholder-icon">🎯</div>
+        <p>Enter lead details to get AI-powered scoring and intelligence report</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYTICS SECTION -->
+<section class="section analytics-section" id="analytics">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">Predictive Analytics</h2>
+      <p class="section-sub">AI-forecasted campaign performance and revenue projections</p>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="form-panel">
+      <form id="analyticsForm" onsubmit="predictAnalytics(event)">
+        <div class="form-group">
+          <label>Campaign Type</label>
+          <select id="a_type">
+            <option value="email marketing">Email Marketing</option>
+            <option value="social media advertising">Social Media Ads</option>
+            <option value="content marketing">Content Marketing</option>
+            <option value="paid search (Google Ads)">Paid Search</option>
+            <option value="influencer marketing">Influencer Marketing</option>
+            <option value="event/webinar marketing">Events / Webinars</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Industry</label>
+          <input type="text" id="a_industry" placeholder="e.g. B2B SaaS, E-commerce, Healthcare" required />
+        </div>
+        <div class="form-group">
+          <label>Target Audience</label>
+          <input type="text" id="a_audience" placeholder="e.g. CTOs at mid-market tech companies" required />
+        </div>
+        <div class="form-group">
+          <label>Monthly Budget</label>
+          <input type="text" id="a_budget" placeholder="e.g. $10,000/month" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" id="analyticsBtn">
+          <span>Generate Forecast</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </button>
+      </form>
+    </div>
+    <div class="result-panel" id="analyticsResult">
+      <div class="result-placeholder">
+        <div class="placeholder-icon">📊</div>
+        <p>Configure your campaign parameters to get AI-driven performance predictions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loader-content">
+    <div class="loader-ring"></div>
+    <p class="loader-text" id="loaderText">Generating with AI...</p>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
